@@ -3,9 +3,9 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     photoPath: DataTypes.STRING,
     currLat: DataTypes.DECIMAL,
-    currLong: DECIMAL,
-    destLat: DECIMAL,
-    destLong: DECIMAL,
+    currLong: DataTypes.DECIMAL,
+    destLat: DataTypes.DECIMAL,
+    destLong: DataTypes.DECIMAL,
     arriveBy: DataTypes.DATE
   });
   return Person;
