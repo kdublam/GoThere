@@ -122,22 +122,25 @@ var map;
 function initMap(position) {
   console.log(position);
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: position.coords.latitude, lng: position.coords.longitude },
     zoom: 8
   });
-  var currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+  var currentLocation = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  };
   console.log(currentLocation);
 
   marker = new google.maps.Marker({
     position: currentLocation,
     map: map,
-    title: 'Current location!',
+    title: "Current location!",
     draggable: true,
-    animation: google.maps.Animation.DROP,
+    animation: google.maps.Animation.DROP
   });
   marker(center);
-  marker.addListener('click', toggleBounce);
+  marker.addListener("click", toggleBounce);
 }
 function toggleBounce() {
   if (marker.getAnimation() !== null) {
@@ -147,15 +150,18 @@ function toggleBounce() {
   }
 }
 
-var input = document.getElementById("destination")
+var input = document.getElementById("destination");
 
-$.get("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4")
-  .then(function(res){
-    console.log("Goohle place search",res)
+$.get(
+  "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4"
+)
+  .then(function(res) {
+    console.log("Goohle place search", res);
   })
-  .catch(function(err){console.log(err)});
+  .catch(function(err) {
+    console.log(err);
+  });
 
-  
 // function destination() {
 //   console.log("function");
 //   $.get("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4", function (res) {
@@ -165,8 +171,6 @@ $.get("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=M
 //   }
 // )
 // }
-
-
 
 //Google maps api docs
 // function initMap() {
