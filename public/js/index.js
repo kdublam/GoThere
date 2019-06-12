@@ -26,6 +26,16 @@ $("#submit").on("click", function(event) {
   }
   console.log(newPerson)
   
+  $.ajax("/api/persons", {
+    type: "POST",
+    data: newPerson
+  }).then(
+    function() {
+      console.log("created new user input");
+      // Reload the page to get the updated list
+      location.reload();
+    }
+  );
 });
 
 
