@@ -1,3 +1,116 @@
-.list-group-item {
-  line-height: 2.5;
+body{
+  font-family: 'Abel', sans-serif;
+  margin: 0px;
+  overflow-x:hidden;
+  overflow-y:auto;
+  background-color:white;
+  color:#424242;
 }
+
+
+nav{
+  background-color:white;
+  
+  box-shadow:1px 1px 4px grey;
+  background: rgba(255,255,255,0.9);
+  -webkit-box-shadow:none;
+  
+}
+
+.nav-wrapper{
+  
+  margin: 0 3rem 2.5rem;
+   
+}
+nav ul a {
+  color:#212121;
+  font-size:1.5rem;
+}
+
+
+
+.mainPic{
+
+ width:100%;
+ opacity: 0.7;
+  
+}
+
+h4 {
+  color:#424242;
+  font-weight:bold;
+}
+
+p{
+  font-size:2rem;
+}
+
+i{
+  color:#a5d6a7;
+  font-size: 3rem;
+  text-align:center;
+  margin:0 5rem 0 auto;
+}
+
+.iconText{
+  text-align:center;
+  display:block;
+  padding-top:1.5rem;
+  color:#4caf50;
+  font-family: 'Abel', sans-serif;
+  font-size: 2rem;
+  font-weight: normal
+}
+
+#useGoThere{
+  margin-top:10rem;
+}
+
+#userInput{
+  margin-top:2rem;
+}
+.input-field #destination{
+  height: 4rem;
+ 
+  margin-top: 1rem;
+  padding:0.5rem;
+  font-size: 1.5rem;
+}
+.input-field>label{
+  font-size:2.2em;
+  color:#424242;
+  margin-bottom:1rem;
+  padding-bottom:1rem;
+}
+
+.input-field #calendar{
+  height: 4rem;
+ color:lightgrey;
+  margin-top: 1rem;
+  padding:0.5rem;
+  font-size: 1.5rem;
+}
+
+.input-field #clock{
+  height: 4rem;
+ 
+  margin-top: 1rem;
+  padding:0.5rem;
+  font-size: 1.5rem;
+}
+
+
+input.select-dropdown.dropdown-trigger{
+  height: 4rem;
+ 
+  margin-top: 1rem;
+  padding:0.5rem;
+  font-size: 1.5rem;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+  
+  font-size: 2rem;
+
+}
+

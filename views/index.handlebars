@@ -1,33 +1,117 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo left"><img class="logo" src="../public/styles/images/logo4.png" width="85%"> </a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#useGoThere">Use GoThere</a></li>
+        <li><a href="#logOut">Log-out</a></li>
+      </ul>
     </div>
+  </nav>
+</div>
+
+
+{{!-- parallax img 1 --}}
+  <div class="parallax-container">
+  <div class="parallax">
+    <img class="mainPic" src="rideshare2.jpg">
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<div class="container">
+  <div id="about">
+    <h4>About GoThere</h4>
+    <p> Commuting or just going somewhere can take long and bore you. Wouldn’t it be fun to use the commuting time to
+      make friends or network? GoThere is a commuting app that connects users who go to the same destination. You can
+      choose either car pool or public transportation option.
+      </br>
+
+
+      <p>Why use GoThere?</p>
+      <div class="row" id="icons">
+
+        <div class="col l4 m4 s12">
+          <i class="fas fa-dollar-sign"><span class="iconText">Save money on gas, parking, and toll</span></i>
+        </div>
+
+        <div class="col l4 m4 s12">
+          <i class="fas fa-leaf"><span class="iconText">Help the environment by sharing rides </span></i>
+        </div>
+
+        <div class="col l4 m4 s12">
+          <i class="fas fa-user-friends"><span class="iconText">Make your commute fun and meet friends</span></i>
+        </div>
+      </div>
+      <!-- closing icon row div -->
+
+  </div>
+  <!-- closing about div -->
+
+</div>
+{{!-- closing container div --}}
+
+{{!-- parallax img2 --}}
+<div class="parallax-container">
+        <div class="parallax">
+          <img class="mainPic" src="images/bus_stop.jpg">
+        </div>
+      </div>
+
+
+<div class="container">
+  <div id="useGoThere">
+    <h4>Getting started with GoThere</h4>
+
+    <div class="row" id="userInput">
+
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Destination" id="destination" type="text" class="validate">
+            <label for="destination">Where are you going?</label>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="calendar" placeholder="mm/dd/yyy" type="date" class="datepicker">
+            <label for="calendar">Pick date</label>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="hh:mm" id="clock" type="text" class="timepicker">
+            <label for="time">Pick time</label>
+          </div>
+        </div>
+
+
+        <div class="row">
+              <div class="input-field col s12">
+                  <select id="transMethod">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Driving">Driving</option>
+                    <option value="Transit">Transit</option>
+                    <option value="Bike">Bike</option>
+                  </select>
+                  <label for ="transMethod">Choose your transportaion</label>
+                </div>
+          </div>
+          
+      </form>
+      <a class="waves-effect waves-light btn" id="submit">Submit</a>
+    </div>
+
+  </div>
+  <!-- closing useGoThere div -->
+
+
+</div>
+{{!-- closing container div --}}
