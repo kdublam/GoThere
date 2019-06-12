@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #map {
+            height: 200px;
+            width: 300px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <p id="lat"></p>
+    <p id="long"></p>
+
+    <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+      </select>
+    <form>
+        Destination:<br>
+        <input type="text" id="destination">
+    </form>
+    <button type="submit" form="form1" value="Submit" id="submit" onClick="destination()">Submit</button>
+    <div class="container" id="map">
+
+    </div>
+
+    <!-- <div id="floating-panel">
+        <b>Mode of Travel: </b>
+        <select id="mode">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+        </select>
+    </div>
+
+    <form>
+        origin:<br>
+        <input type="text" id="origin">
+            Destination:<br>
+            <input type="text" id="destination">
+        </form>
+        <button type="submit" form="form1" value="Submit" id="submit" onClick="initMap()">Submit</button>
+
+    <div id="map"></div> -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4&callback=initMap">
+        </script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
