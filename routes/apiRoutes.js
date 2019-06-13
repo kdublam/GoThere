@@ -1,23 +1,24 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  // USERS
   // Get all users
   app.get("/api/users", function(req, res) {
-    db.Person.findAll({}).then(function(users) {
+    db.Users.findAll({}).then(function(users) {
       res.json(users);
     });
   });
 
   // Create a new user
   app.post("/api/users", function(req, res) {
-    db.Person.create(req.body).then(function(user) {
+    db.Users.create(req.body).then(function(user) {
       res.json(user);
     });
   });
 
   // Update a user
   app.put("/api/users", function(req, res) {
-    db.Person.update(req.body, {
+    db.Users.update(req.body, {
       where: {
         id: req.body.id
       }
@@ -28,8 +29,41 @@ module.exports = function(app) {
 
   // Delete an user by id
   app.delete("/api/users/:id", function(req, res) {
-    db.Person.destroy({ where: { id: req.params.id } }).then(function(user) {
+    db.Users.destroy({ where: { id: req.params.id } }).then(function(user) {
       res.json(user);
+    });
+  });
+
+  // PLANS
+  // Get all plans
+  app.get("/api/plans", function(req, res) {
+    db.Plans.findAll({}).then(function(plans) {
+      res.json(plans);
+    });
+  });
+
+  // Create a new plan
+  app.post("/api/plans", function(req, res) {
+    db.Plans.create(req.body).then(function(plan) {
+      res.json(plan);
+    });
+  });
+
+  // Update a plan
+  app.put("/api/plans", function(req, res) {
+    db.Plans.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(plan) {
+      res.json(plan);
+    });
+  });
+
+  // Delete a plan by id
+  app.delete("/api/plans/:id", function(req, res) {
+    db.Plans.destroy({ where: { id: req.params.id } }).then(function(plan) {
+      res.json(plan);
     });
   });
 };

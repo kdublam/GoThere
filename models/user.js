@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Sequelize) {
-  var User = sequelize.define("user", {
+  var User = sequelize.define("User", {
     id: {
       autoIncrement: true,
       primaryKey: true,
