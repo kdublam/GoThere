@@ -114,3 +114,16 @@ input.select-dropdown.dropdown-trigger{
 
 }
 
+#authLogo{
+  text-align: center;
+  margin-top: 20%;
+}
+
+#signupBtn{
+  text-align: right;
+}
+
+#loginBtn{
+  text-align: left;
+}
+

@@ -7,9 +7,6 @@ module.exports = function(sequelize, DataTypes) {
     destLong: DataTypes.DECIMAL,
     arriveBy: DataTypes.DATE
   });
-  Plan.associate = function(models) {
-    Plan.belongsTo(models.User);
-  };
 
   return Plan;
 };

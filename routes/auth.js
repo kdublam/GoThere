@@ -10,9 +10,8 @@ module.exports = function(app, passport) {
     passport.authenticate("local-signup", {
       successRedirect: "/dashboard",
 
-      failureRedirect: "/signup"
-    })
-  );
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/',
 
   app.get("/", authController.home);
 
@@ -21,7 +20,18 @@ module.exports = function(app, passport) {
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
 
-    res.redirect("/signin");
+    if (req.isAuthenticated())
+
+      return next();
+
+    res.redirect('/signin');
+
+  }
+
+  app.post('/signin', passport.authenticate('local-signin', {
+    successRedirect: '/',
+
+    failureRedirect: '/signin'
   }
 
   app.post(
