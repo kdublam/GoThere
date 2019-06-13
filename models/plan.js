@@ -1,7 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Person = sequelize.define("Person", {
-    name: DataTypes.STRING,
-    authToken: DataTypes.STRING,
+  var Plan = sequelize.define("Plan", {
     photoPath: DataTypes.STRING,
     currLat: DataTypes.DECIMAL,
     currLong: DataTypes.DECIMAL,
@@ -9,5 +7,9 @@ module.exports = function(sequelize, DataTypes) {
     destLong: DataTypes.DECIMAL,
     arriveBy: DataTypes.DATE
   });
-  return Person;
+  Plan.associate = function(models) {
+    Plan.belongsTo(models.User);
+  };
+
+  return Plan;
 };
