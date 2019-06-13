@@ -12,9 +12,9 @@ exports.signin = function (req, res) {
 
 }
 
-exports.home = function (req, res) {
+exports.index = function (req, res) {
 
-  res.render('home');
+  res.render('index');
 
 }
 
