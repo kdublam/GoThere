@@ -12,6 +12,10 @@ exports.home = function(req, res) {
   res.render("home");
 };
 
+exports.index = function(req, res) {
+  res.render("index");
+};
+
 exports.logout = function(req, res) {
   req.session.destroy(function(err) {
     res.redirect("/");

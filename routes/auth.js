@@ -5,40 +5,35 @@ module.exports = function(app, passport) {
 
   app.get("/signin", authController.signin);
 
+  app.get("/signin", authController.signin);
+
+  app.get("/home", authController.home);
+
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
-      successRedirect: "/dashboard",
+      successRedirect: "/home",
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/',
+      failureRedirect: "/signup"
+    })
+  );
 
-  app.get("/", authController.home);
+  app.get("/", authController.index);
 
   app.get("/logout", authController.logout);
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
 
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) return next();
 
-      return next();
-
-    res.redirect('/signin');
-
-  }
-
-  app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/',
-
-    failureRedirect: '/signin'
+    res.redirect("/signin");
   }
 
   app.post(
     "/signin",
     passport.authenticate("local-signin", {
-      successRedirect: "/dashboard",
-
+      successRedirect: "/home",
       failureRedirect: "/signin"
     })
   );
