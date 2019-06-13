@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Totoro77",
+    "password": "1511",
     "database": "gothere_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

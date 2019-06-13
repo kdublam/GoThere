@@ -26,6 +26,7 @@ $("#submit").on("click", function(event) {
   }
   console.log(newPerson)
   
+  
   $.ajax("/api/persons", {
     type: "POST",
     data: newPerson
