@@ -37,21 +37,21 @@ module.exports = function(app) {
   // PLANS
   // Get all plans
   app.get("/api/plans", function(req, res) {
-    db.Plans.findAll({}).then(function(plans) {
+    db.Plan.findAll({}).then(function(plans) {
       res.json(plans);
     });
   });
 
   // Create a new plan
   app.post("/api/plans", function(req, res) {
-    db.Plans.create(req.body).then(function(plan) {
+    db.Plan.create(req.body).then(function(plan) {
       res.json(plan);
     });
   });
 
   // Update a plan
   app.put("/api/plans", function(req, res) {
-    db.Plans.update(req.body, {
+    db.Plan.update(req.body, {
       where: {
         id: req.body.id
       }
@@ -62,7 +62,7 @@ module.exports = function(app) {
 
   // Delete a plan by id
   app.delete("/api/plans/:id", function(req, res) {
-    db.Plans.destroy({ where: { id: req.params.id } }).then(function(plan) {
+    db.Plan.destroy({ where: { id: req.params.id } }).then(function(plan) {
       res.json(plan);
     });
   });

@@ -40,14 +40,14 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require('./routes/auth.js')(app,passport);
+require("./routes/auth.js")(app, passport);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };
 
 //load passport strategies
-require("./config/passport/passport.js")(passport, db.user);
+require("./config/passport/passport.js")(passport, db.User);
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

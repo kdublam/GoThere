@@ -17,18 +17,18 @@ $("#submit").on("click", function(event) {
   // Make sure to preventDefault on a submit event.
   
 
-  var newPerson = {
+  var newPlan = {
     destination: $("#destination").val().trim(),
     date:$("#calendar").val(),
     time:$("#clock").val(),
     transMethod:$("#transMethod").children("option:selected").val()
     
   }
-  console.log(newPerson)
+  console.log(newPlan)
   
-  $.ajax("/api/persons", {
+  $.ajax("/api/plans", {
     type: "POST",
-    data: newPerson
+    data: newPlan
   }).then(
     function() {
       console.log("created new user input");
