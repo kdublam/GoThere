@@ -1,24 +1,69 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // USERS
+  // Get all users
+  app.get("/api/users", function(req, res) {
+    db.Users.findAll({}).then(function(users) {
+      res.json(users);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Create a new user
+  app.post("/api/users", function(req, res) {
+    db.Users.create(req.body).then(function(user) {
+      res.json(user);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  // Update a user
+  app.put("/api/users", function(req, res) {
+    db.Users.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(user) {
+      res.json(user);
+    });
+  });
+
+  // Delete an user by id
+  app.delete("/api/users/:id", function(req, res) {
+    db.Users.destroy({ where: { id: req.params.id } }).then(function(user) {
+      res.json(user);
+    });
+  });
+
+  // PLANS
+  // Get all plans
+  app.get("/api/plans", function(req, res) {
+    db.Plan.findAll({}).then(function(plans) {
+      res.json(plans);
+    });
+  });
+
+  // Create a new plan
+  app.post("/api/plans", function(req, res) {
+    db.Plan.create(req.body).then(function(plan) {
+      res.json(plan);
+    });
+  });
+
+  // Update a plan
+  app.put("/api/plans", function(req, res) {
+    db.Plan.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(plan) {
+      res.json(plan);
+    });
+  });
+
+  // Delete a plan by id
+  app.delete("/api/plans/:id", function(req, res) {
+    db.Plan.destroy({ where: { id: req.params.id } }).then(function(plan) {
+      res.json(plan);
     });
   });
 };
