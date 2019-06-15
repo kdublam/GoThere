@@ -1,11 +1,25 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Plan = sequelize.define("Plan", {
-    photoPath: DataTypes.STRING,
-    currLat: DataTypes.DECIMAL,
-    currLong: DataTypes.DECIMAL,
-    destLat: DataTypes.DECIMAL,
-    destLong: DataTypes.DECIMAL,
-    arriveBy: DataTypes.DATE
+    currLat: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    currLong: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    destLat: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    destLong: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    arriveBy: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    }
   });
 
   return Plan;

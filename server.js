@@ -7,6 +7,11 @@ var bodyParser = require("body-parser");
 // var env = require('dotenv').load();
 
 var db = require("./models");
+db.Plan.belongsTo(db.User, {
+  foreignKey: {
+    allowNull: false
+  }
+});
 
 var app = express();
 var PORT = process.env.PORT || 3000;
