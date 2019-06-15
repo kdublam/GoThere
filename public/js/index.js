@@ -1,3 +1,5 @@
+// we only need 2 decimal places in our lat/long: xx.xx, xxx.xx
+
 const timer = document.querySelector('.timepicker');
 M.Timepicker.init(timer,{
   showClearBtn:true
