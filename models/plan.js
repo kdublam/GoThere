@@ -1,23 +1,23 @@
 module.exports = function (sequelize, DataTypes) {
   var Plan = sequelize.define("Plan", {
     currLat: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(5, 2),
       allowNull: false
     },
     currLong: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(5, 2),
       allowNull: false
     },
     destLat: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(5, 2),
       allowNull: false
     },
     destLong: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(5, 2),
       allowNull: false
     },
     arriveBy: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DATE,
       allowNull: false
     }
   });

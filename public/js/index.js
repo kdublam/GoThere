@@ -33,7 +33,7 @@ $("#submit").on("click", function (event) {
   var newTimeText = convertTimeStringformat(24, timeText);
   var selectedTime = new Date(dateText + ' ' + newTimeText);
 
-  
+
   // var myPlan = new Plan(currLat, currLong, destLat, destLong, destTime);  // Make active when map is integrated.
   var newPlan = {
     destination: $("#destination").val().trim(),
@@ -78,13 +78,13 @@ function checkTime() {
   var newTimeText = convertTimeStringformat(24, timeText);
   var selectedTime = new Date(dateText + ' ' + newTimeText);
   var now = new Date();
-  
+
   console.log(selectedTime);
   console.log(now);
 
   if (selectedTime < now) {
     alert("Time must be in the future");
-    $("#clock").val('')   
+    $("#clock").val('')
   }
 }
 
@@ -100,6 +100,6 @@ function convertTimeStringformat(format, str) {
   var sMinutes = minutes.toString();
   if (hours < 10) sHours = "0" + sHours;
   if (minutes < 10) sMinutes = "0" + sMinutes;
-  return(sHours + ":" + sMinutes);
+  return (sHours + ":" + sMinutes);
 }
 

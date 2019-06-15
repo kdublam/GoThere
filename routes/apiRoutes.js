@@ -1,4 +1,5 @@
 var db = require("../models");
+// const Op = Sequelize.Op;
 
 module.exports = function(app) {
   // USERS
@@ -47,8 +48,27 @@ module.exports = function(app) {
   app.post("/api/plans", function(req, res) {
     db.Plan.create(req.body)
       .then(function(plan) {
+        console.log(plan);
+        var dbQuery = {
+          where: {
+            currLat: plan.currLat,    // all lat/long precision 2 (xx.xx)
+            currLong: plan.currLong,
+            destLat: plan.destLat,
+            destLong: plan.destLong,
+            destTime: {                 // within 30 minute range (15 minutes before or after)
+              [Op.and]: {
+                [Op.lt]: plan.arriveBy + 15,
+                [Op.gt]: plan.arriveBy - 15
+              }
+            }
+          }
+        }
+        db.Plan.findAll(dbQuery).then(function(plans) {
+          console.log(plans);
+          res.json(plans);
+        });
         // sends back the plan that was inserted into the database
-        res.json(plan);
+        // res.json(plan);
       })
       .catch(function(error) {errorHandler(error, res)});
   });
@@ -61,8 +81,26 @@ module.exports = function(app) {
         id: req.body.id
       }
     }).then(function(plan) {
+      var dbQuery = {
+        where: {
+          currLat: plan.currLat,    // all lat/long precision 2 (xx.xx)
+          currLong: plan.currLong,
+          destLat: plan.destLat,
+          destLong: plan.destLong,
+          destTime: {                 // within 30 minute range (15 minutes before or after)
+            [Op.and]: {
+              [Op.lt]: plan.arriveBy + 15,
+              [Op.gt]: plan.arriveBy - 15
+            }
+          }
+        }
+      }
+      db.Plan.findAll(dbQuery).then(function(plans) {
+        console.log(plans);
+        res.json(plans);
+      });
       // sends back the plan that was updated in the database
-      res.json(plan);
+      // res.json(plan);
     }).catch(function(error) {errorHandler(error, res)});
   });
 
