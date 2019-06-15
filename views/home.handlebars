@@ -1,8 +1,9 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo left"><img class="logo" src="images/logo4.png" width="85%"> </a>
-      <ul id="nav-mobile" class="right">
+      <a href="#" class="brand-logo"><img class="logo" src="images/logo4.png" width="85%"> </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#useGoThere">Use GoThere</a></li>
@@ -10,11 +11,20 @@
       </ul>
     </div>
   </nav>
+
+
+
 </div>
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="#">Home</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#useGoThere">Use GoThere</a></li>
+  <li><a href="/logout">Log-out</a></li>
+</ul>
 
 
 {{!-- parallax img 1 --}}
-  <div class="parallax-container">
+<div class="parallax-container">
   <div class="parallax">
     <img class="mainPic" src="images/rideshare2.jpg">
   </div>
@@ -54,10 +64,10 @@
 
 {{!-- parallax img2 --}}
 <div class="parallax-container">
-        <div class="parallax">
-          <img class="mainPic" src="images/bus_stop.jpg">
-        </div>
-      </div>
+  <div class="parallax">
+    <img class="mainPic" src="images/bus_stop.jpg">
+  </div>
+</div>
 
 
 <div class="container">
@@ -78,7 +88,8 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy" type="date" data-date-format="yyyy-mm-dd" >
+            <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy"
+              type="date" data-date-format="yyyy-mm-dd">
             <label for="calendar">Pick date</label>
           </div>
         </div>
@@ -94,17 +105,17 @@
 
 
         <div class="row">
-              <div class="input-field col s12">
-                  <select id="transMethod">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="Walking">Walking</option>
-                    <option value="Driving">Driving</option>
-                    <option value="Transit">Transit</option>
-                    <option value="Bike">Bike</option>
-                  </select>
-                  <label for ="transMethod">Choose your transportaion</label>
-                </div>
+          <div class="input-field col s12">
+            <select id="transMethod">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="Walking">Walking</option>
+              <option value="Driving">Driving</option>
+              <option value="Transit">Transit</option>
+              <option value="Bike">Bike</option>
+            </select>
+            <label for="transMethod">Choose your transportaion</label>
           </div>
+        </div>
 
       </form>
       <a class="waves-effect waves-light btn" id="submit">Submit</a>

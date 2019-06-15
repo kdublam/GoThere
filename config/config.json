@@ -1,6 +1,9 @@
 {
   "development": {
-    "use_env_variable": "LOCALDB_URL",
+    "username": "root",
+    "password": "1511",
+    "database": "gothere_db",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
