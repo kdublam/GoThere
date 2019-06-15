@@ -1,3 +1,16 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo left"><img class="logo" src="images/logo4.png" width="85%"> </a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/logout">Log-out</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
 <div class="container">
     <div class="row">
     <div class="col-8 offset-2">
@@ -5,19 +18,17 @@
         <div class="card-body">
           <h5 class="card-title">We found a match!</h5>
           <p>
-            <strong>Name</strong>: {{person.name}}</p>
+            <strong>Name</strong>: {{user.name}}</p>
           <p>
           <p>
-            <strong>Destination</strong>: {{person.destination}}</p>
+            <strong>Destination</strong>: {{plan.destination}}</p>
           <p>
-            <strong>Date:</strong> {{person.date}}</p>
+            <strong>Arrival Date Time</strong> {{plan.arrivalDateTime}}</p>
           
-           <p>
-            <strong>Time:</strong> {{person.time}}</p>
           <p>
-            <strong>Transportation:</strong> {{person.transportation}}</p>
+            <strong>Transportation:</strong> {{plan.transportation}}</p>
           <p>
-            <strong>Contact:</strong> {{person.contact}}</p>
+            <strong>Contact:</strong> {{user.email}}</p>
            
         </div>
       </div>
