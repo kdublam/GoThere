@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.post("/api/users", function(req, res) {
     db.Users.create(req.body).then(function(user) {
       res.json(user);
-    });
+    }).catch(function(error) {errorHandler(error, res)});
   });
 
   // Update a user
@@ -24,14 +24,14 @@ module.exports = function(app) {
       }
     }).then(function(user) {
       res.json(user);
-    });
+    }).catch(function(error) {errorHandler(error, res)});
   });
 
   // Delete an user by id
   app.delete("/api/users/:id", function(req, res) {
     db.Users.destroy({ where: { id: req.params.id } }).then(function(user) {
       res.json(user);
-    });
+    }).catch(function(error) {errorHandler(error, res)});
   });
 
   // PLANS
@@ -44,9 +44,11 @@ module.exports = function(app) {
 
   // Create a new plan
   app.post("/api/plans", function(req, res) {
-    db.Plan.create(req.body).then(function(plan) {
-      res.json(plan);
-    });
+    db.Plan.create(req.body)
+      .then(function(plan) {
+        res.json(plan);
+      })
+      .catch(function(error) {errorHandler(error, res)});
   });
 
   // Update a plan
@@ -57,13 +59,21 @@ module.exports = function(app) {
       }
     }).then(function(plan) {
       res.json(plan);
-    });
+    }).catch(function(error) {errorHandler(error, res)});
   });
 
   // Delete a plan by id
   app.delete("/api/plans/:id", function(req, res) {
     db.Plan.destroy({ where: { id: req.params.id } }).then(function(plan) {
       res.json(plan);
-    });
+    }).catch(function(error) {errorHandler(error, res)});
+
   });
 };
+
+var errorHandler = function(err, res) {
+  err.errors.forEach(element => {
+    console.log(element.message);
+  });
+  res.status(500).end();
+}
