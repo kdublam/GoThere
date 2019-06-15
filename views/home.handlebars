@@ -78,7 +78,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="calendar" placeholder="mm/dd/yyy" type="date" class="datepicker">
+            <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy" type="date" data-date-format="yyyy-mm-dd" >
             <label for="calendar">Pick date</label>
           </div>
         </div>
@@ -87,8 +87,8 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="hh:mm" id="clock" type="text" class="timepicker">
-            <label for="time">Pick time</label>
+            <input placeholder="hh:mm" id="clock" onchange="checkTime()" type="text" class="timepicker">
+            <label for="time">Pick time(Arrival Time)</label>
           </div>
         </div>
 
