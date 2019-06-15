@@ -1,36 +1,50 @@
 const timer = document.querySelector('.timepicker');
-M.Timepicker.init(timer,{
-  showClearBtn:true
-  
+M.Timepicker.init(timer, {
+  showClearBtn: true
+
 })
 
-$(document).ready(function(){
+$(document).ready(function () {
   $('select').formSelect();
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
   $('.parallax').parallax();
 });
 
 
-$("#submit").on("click", function(event) {
+$("#submit").on("click", function (event) {
   // Make sure to preventDefault on a submit event.
-  
+  event.preventDefault();
+
+  //alert the user if any input field is empty
+  if ($.trim($("#destination").val()) === "" || $.trim($("#calendar").val()) === "" || $.trim($("#clock").val()) === "" || $.trim($("#transMethod").val()) === "") {
+    alert('Please fiil out all the fields');
+    return false;
+  }
+
+  //get the value of user input
+
+  var dateText = $("#calendar").val();
+  var timeText = $("#clock").val();
+  var newTimeText = convertTimeStringformat(24, timeText);
+  var selectedTime = new Date(dateText + ' ' + newTimeText);
+
 
   var newPlan = {
     destination: $("#destination").val().trim(),
-    date:$("#calendar").val(),
-    time:$("#clock").val(),
-    transMethod:$("#transMethod").children("option:selected").val()
-    
+    arrivalDateTime: selectedTime,
+    transMethod: $("#transMethod").children("option:selected").val()
+
   }
+
   console.log(newPlan)
-  
+
   $.ajax("/api/plans", {
     type: "POST",
     data: newPlan
   }).then(
-    function() {
+    function () {
       console.log("created new user input");
       // Reload the page to get the updated list
       location.reload();
@@ -38,104 +52,47 @@ $("#submit").on("click", function(event) {
   );
 });
 
+//alert user if past or today is selected. allow user to choose today after alerting.
+function checkDate() {
+  var dateText = $("#calendar").val();
+  var selectedDate = new Date(dateText);
+  var now = new Date();
+  if (selectedDate < now) {
+    alert("Date must be in the future");
+  }
+}
 
+//alert user if past time is selected, and clear the form until user selects future time
 
-// // Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
+function checkTime() {
 
-// // The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "api/examples",
-//       data: JSON.stringify(example)
-//     });
-//   },
-//   getExamples: function() {
-//     return $.ajax({
-//       url: "api/examples",
-//       type: "GET"
-//     });
-//   },
-//   deleteExample: function(id) {
-//     return $.ajax({
-//       url: "api/examples/" + id,
-//       type: "DELETE"
-//     });
-//   }
-// };
+  var dateText = $("#calendar").val();
+  var timeText = $("#clock").val();
+  var newTimeText = convertTimeStringformat(24, timeText);
+  var selectedTime = new Date(dateText + ' ' + newTimeText);
+  var now = new Date();
+  
+  console.log(selectedTime);
+  console.log(now);
 
-// // refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
+  if (selectedTime < now) {
+    alert("Time must be in the future");
+    $("#clock").val('')   
+  }
+}
 
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
+//convert 12h time string to 24h time string
+function convertTimeStringformat(format, str) {
+  var time = $("#clock").val();
+  var hours = Number(time.match(/^(\d+)/)[1]);
+  var minutes = Number(time.match(/:(\d+)/)[1]);
+  var AMPM = time.match(/\s(.*)$/)[1];
+  if (AMPM == "PM" && hours < 12) hours = hours + 12;
+  if (AMPM == "AM" && hours == 12) hours = hours - 12;
+  var sHours = hours.toString();
+  var sMinutes = minutes.toString();
+  if (hours < 10) sHours = "0" + sHours;
+  if (minutes < 10) sMinutes = "0" + sMinutes;
+  return(sHours + ":" + sMinutes);
+}
 
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
-
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
-
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
-
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
