@@ -1,4 +1,5 @@
 // we only need 2 decimal places in our lat/long: xx.xx, xxx.xx
+const Plan = require("./plan");
 
 const timer = document.querySelector('.timepicker');
 M.Timepicker.init(timer, {
@@ -32,7 +33,8 @@ $("#submit").on("click", function (event) {
   var newTimeText = convertTimeStringformat(24, timeText);
   var selectedTime = new Date(dateText + ' ' + newTimeText);
 
-
+  
+  // var myPlan = new Plan(currLat, currLong, destLat, destLong, destTime);  // Make active when map is integrated.
   var newPlan = {
     destination: $("#destination").val().trim(),
     arrivalDateTime: selectedTime,
@@ -44,12 +46,15 @@ $("#submit").on("click", function (event) {
 
   $.ajax("/api/plans", {
     type: "POST",
-    data: newPlan
+    data: newPlan // myPlan when map is integrated.
   }).then(
-    function () {
+    function (response) {
+      // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
+      // Now we need to get matches from the database and render the result
       console.log("created new user input");
+      console.log(response);
       // Reload the page to get the updated list
-      location.reload();
+      // location.reload();
     }
   );
 });

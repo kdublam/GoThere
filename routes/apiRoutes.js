@@ -43,21 +43,25 @@ module.exports = function(app) {
   });
 
   // Create a new plan
+  // then return all similar plans
   app.post("/api/plans", function(req, res) {
     db.Plan.create(req.body)
       .then(function(plan) {
+        // sends back the plan that was inserted into the database
         res.json(plan);
       })
       .catch(function(error) {errorHandler(error, res)});
   });
 
   // Update a plan
+  // then return all similar plans
   app.put("/api/plans", function(req, res) {
     db.Plan.update(req.body, {
       where: {
         id: req.body.id
       }
     }).then(function(plan) {
+      // sends back the plan that was updated in the database
       res.json(plan);
     }).catch(function(error) {errorHandler(error, res)});
   });
