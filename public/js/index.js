@@ -1,5 +1,4 @@
 // we only need 2 decimal places in our lat/long: xx.xx, xxx.xx
-const Plan = require("./plan");
 
 const timer = document.querySelector('.timepicker');
 M.Timepicker.init(timer, {
