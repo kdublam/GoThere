@@ -3,65 +3,109 @@
 const timer = document.querySelector('.timepicker');
 M.Timepicker.init(timer, {
   showClearBtn: true
-
-})
-
-$(document).ready(function(){
-  $('.sidenav').sidenav();
 });
 
+var myPlan = {};
 
-$(document).ready(function () {
-  $('select').formSelect();
-});
+function initMap() {
+  var geocoder = new google.maps.Geocoder();
 
-$(document).ready(function () {
-  $('.parallax').parallax();
-});
+  $("#submit").on("click", function () {
+    myPlan.arriveBy = getArrivalTime();
+    geocodeAddress(geocoder);
+  });
+}
 
+function geocodeAddress(geocoder) {
+  var origin = $("#origin").val().trim();
+  var destination = $("#destination").val().trim();
 
-$("#submit").on("click", function (event) {
-  // Make sure to preventDefault on a submit event.
-  event.preventDefault();
+  geocoder.geocode({ "address": origin }, function (result, status) {
+    if (status === 'OK') {
+      console.log(result);
+      myPlan.currLat = result[0].geometry.location.lat();
+      myPlan.currLong = result[0].geometry.location.lng();
+      console.log(myPlan);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+  geocoder.geocode({ "address": destination }, function (result, status) {
+    if (status === 'OK') {
+      console.log(result);
+      myPlan.destLat = result[0].geometry.location.lat();
+      myPlan.destLong = result[0].geometry.location.lng();
+      console.log(myPlan);
+      $.ajax("/api/plans", {
+        type: "POST",
+        data: myPlan // myPlan when map is integrated.
+      }).then(
+        function (response) {
+          // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
+          // Now we need to get matches from the database and render the result
+          console.log("created new user input");
+          console.log(response);
+          // Reload the page to get the updated list
+          // location.reload();
+        }
+      );
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
 
-  //alert the user if any input field is empty
-  if ($.trim($("#destination").val()) === "" || $.trim($("#calendar").val()) === "" || $.trim($("#clock").val()) === "" || $.trim($("#transMethod").val()) === "") {
-    alert('Please fiil out all the fields');
-    return false;
-  }
-
-  //get the value of user input
-
+function getArrivalTime() {
   var dateText = $("#calendar").val();
   var timeText = $("#clock").val();
   var newTimeText = convertTimeStringformat(24, timeText);
   var selectedTime = new Date(dateText + ' ' + newTimeText);
+  return selectedTime;
+}
 
-
-  // var myPlan = new Plan(currLat, currLong, destLat, destLong, destTime);  // Make active when map is integrated.
-  var newPlan = {
-    destination: $("#destination").val().trim(),
-    arrivalDateTime: selectedTime,
-    transMethod: $("#transMethod").children("option:selected").val()
-
-  }
-
-  console.log(newPlan)
-
-  $.ajax("/api/plans", {
-    type: "POST",
-    data: newPlan // myPlan when map is integrated.
-  }).then(
-    function (response) {
-      // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
-      // Now we need to get matches from the database and render the result
-      console.log("created new user input");
-      console.log(response);
-      // Reload the page to get the updated list
-      // location.reload();
-    }
-  );
+$(document).ready(function () {
+  $('.sidenav').sidenav();
+  $('select').formSelect();
+  $('.parallax').parallax();
 });
+
+// $("#submit").on("click", function (event) {
+//   // Make sure to preventDefault on a submit event.
+//   event.preventDefault();
+
+//   //alert the user if any input field is empty
+//   if ($.trim($("#destination").val()) === "" || $.trim($("#calendar").val()) === "" || $.trim($("#clock").val()) === "" || $.trim($("#transMethod").val()) === "") {
+//     alert('Please fiil out all the fields');
+//     return false;
+//   }
+
+//   //get the value of user input
+
+
+//   // var myPlan = new Plan(currLat, currLong, destLat, destLong, destTime);  // Make active when map is integrated.
+//   var newPlan = {
+//     destination: $("#destination").val().trim(),
+//     arrivalDateTime: selectedTime,
+//     transMethod: $("#transMethod").children("option:selected").val()
+
+//   }
+
+//   console.log(newPlan)
+
+//   $.ajax("/api/plans", {
+//     type: "POST",
+//     data: newPlan // myPlan when map is integrated.
+//   }).then(
+//     function (response) {
+//       // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
+//       // Now we need to get matches from the database and render the result
+//       console.log("created new user input");
+//       console.log(response);
+//       // Reload the page to get the updated list
+//       // location.reload();
+//     }
+//   );
+// });
 
 //alert user if past or today is selected. allow user to choose today after alerting.
 function checkDate() {

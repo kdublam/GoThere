@@ -79,7 +79,7 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Destination" id="origin" type="text" class="validate">
+            <input placeholder="Leaving from?" id="origin" type="text" class="validate">
             <label for="origin">Tell us your current location?</label>
           </div>
         </div>
@@ -140,3 +140,7 @@
 
 </div>
 {{!-- closing container div --}}
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap">
+</script>
