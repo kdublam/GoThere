@@ -1,3 +1,4 @@
+//initMap is called in index.js
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
   var directionsService = new google.maps.DirectionsService;
@@ -12,16 +13,16 @@ function initMap() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
 
-  document.getElementById("submit").addEventListener("click", function () {
+  // document.getElementById("submit").addEventListener("click", function () {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
-  });
+  // });
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   var start = document.getElementById('start').value;
   var end = document.getElementById('end').value;
   var mode = document.getElementById('transMethod').value; 
-  
+
   var dateText = document.getElementById('calendar').value;  
   var timeText = document.getElementById("clock");  
   var newTimeText = convertTimeStringformat(24, timeText);
@@ -67,6 +68,6 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   });
 }
 
-const googleMapsScript = document.createElement('script');
-googleMapsScript.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4&callback=initMap';
-document.head.appendChild(googleMapsScript);
+// const googleMapsScript = document.createElement('script');
+// googleMapsScript.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4&callback=initMap';
+// document.head.appendChild(googleMapsScript);
