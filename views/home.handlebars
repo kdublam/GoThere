@@ -77,45 +77,53 @@
     <div class="row" id="userInput">
 
       <form class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input placeholder="Destination" id="destination" type="text" class="validate">
-            <label for="destination">Where are you going?</label>
-          </div>
-        </div>
-
-
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy"
-              type="date" data-date-format="yyyy-mm-dd">
-            <label for="calendar">Pick date</label>
+            <input placeholder="Starting point" id="start" type="text" class="validate">
+            <label for="start">Where is your starting point?</label>
           </div>
-        </div>
-
-
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input placeholder="hh:mm" id="clock" onchange="checkTime()" type="text" class="timepicker">
-            <label for="time">Pick time(Arrival Time)</label>
           </div>
-        </div>
 
-
-        <div class="row">
-          <div class="input-field col s12">
-            <select id="transMethod">
-              <option value="" disabled selected>Choose your option</option>
-              <option value="Walking">Walking</option>
-              <option value="Driving">Driving</option>
-              <option value="Transit">Transit</option>
-              <option value="Bike">Bike</option>
-            </select>
-            <label for="transMethod">Choose your transportaion</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Destination" id="end" type="text" class="validate">
+              <label for="end">Where are you going?</label>
+            </div>
           </div>
-        </div>
+
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy"
+                type="date" data-date-format="yyyy-mm-dd">
+              <label for="calendar">Pick date</label>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="hh:mm" id="clock" onchange="checkTime()" type="text" class="timepicker">
+              <label for="time">Pick time(Arrival Time)</label>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="transMethod">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="WALKING">Walking</option>
+                <option value="DRIVING">Driving</option>
+                <option value="TRANSIT">Transit</option>
+                <option value="BICYCLING">Bike</option>
+              </select>
+              <label for="transMethod">Choose your transportaion</label>
+            </div>
+          </div>
 
       </form>
       <a class="waves-effect waves-light btn" id="submit">Submit</a>

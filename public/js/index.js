@@ -25,38 +25,46 @@ $("#submit").on("click", function (event) {
   event.preventDefault();
 
   //alert the user if any input field is empty
-  if ($.trim($("#destination").val()) === "" || $.trim($("#calendar").val()) === "" || $.trim($("#clock").val()) === "" || $.trim($("#transMethod").val()) === "") {
+  if ($.trim($("#start").val()) === "" || $.trim($("#end").val()) === "" || $.trim($("#calendar").val()) === "" || $.trim($("#clock").val()) === "" || $.trim($("#transMethod").val()) === "") {
     alert('Please fiil out all the fields');
     return false;
   }
 
-  //get the value of user input
+  //get the value of user input for database
+  // var start=$("#start").val().trim();
+  // var end=$("#end").val().trim();
+  // var dateText = $("#calendar").val();
+  // var timeText = $("#clock").val();
+  // var mode = $("#transMethod").children("option:selected").val()
+  // var newTimeText = convertTimeStringformat(24, timeText);
+  // var selectedTime = new Date(dateText + ' ' + newTimeText);
 
-  var dateText = $("#calendar").val();
-  var timeText = $("#clock").val();
-  var newTimeText = convertTimeStringformat(24, timeText);
-  var selectedTime = new Date(dateText + ' ' + newTimeText);
 
+   //start and destination should be lat/long
+  // var newPlan = {   
+  //   start: start,
+  //   destination: end,
+  //   arrivalDateTime: selectedTime,
+  //   transMethod: mode
 
-  var newPlan = {
-    destination: $("#destination").val().trim(),
-    arrivalDateTime: selectedTime,
-    transMethod: $("#transMethod").children("option:selected").val()
+  // }
 
-  }
+  // console.log(newPlan)
 
-  console.log(newPlan)
+  // $.ajax("/api/plans", {
+  //   type: "POST",
+  //   data: newPlan
+  // }).then(
+  //   function () {
+  //     console.log("created new user input");
+  //     // Reload the page to get the updated list
+      
+  //    window.location.href ="/plans/" + plan.id
+  //   }
+  // );
 
-  $.ajax("/api/plans", {
-    type: "POST",
-    data: newPlan
-  }).then(
-    function () {
-      console.log("created new user input");
-      // Reload the page to get the updated list
-      location.reload();
-    }
-  );
+  initMap();
+
 });
 
 //alert user if past or today is selected. allow user to choose today after alerting.
