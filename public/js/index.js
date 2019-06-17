@@ -13,8 +13,8 @@ function initMap() {
 }
 
 function geocodeAddress(geocoder) {
-  var origin = $("#origin").val().trim();
-  var destination = $("#destination").val().trim();
+  var origin = $("#start").val().trim();
+  var destination = $("#end").val().trim();
 
   geocoder.geocode({ "address": origin }, function (result, status) {
     if (status === 'OK') {

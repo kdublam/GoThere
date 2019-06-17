@@ -71,7 +71,7 @@ module.exports = function (app) {
           }
           db.Plan.findAll(dbQuery).then(function (plans) {
             console.log(plans);
-            res.json(plans);
+            res.render("result", {data: plans});
           });
           // sends back the plan that was inserted into the database
           // res.json(plan);
