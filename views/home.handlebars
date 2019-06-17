@@ -77,18 +77,18 @@
     <div class="row" id="userInput">
 
       <form class="col s12">
+
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Leaving from?" id="origin" type="text" class="validate">
-            <label for="origin">Tell us your current location?</label>
+            <input placeholder="Starting point" id="start" type="text" class="validate">
+            <label for="start">Where is your starting point?</label>
           </div>
         </div>
 
-
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Destination" id="destination" type="text" class="validate">
-            <label for="destination">Where are you going?</label>
+            <input placeholder="Destination" id="end" type="text" class="validate">
+            <label for="end">Where are you going?</label>
           </div>
         </div>
 
@@ -141,6 +141,5 @@
 </div>
 {{!-- closing container div --}}
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap">
 </script>

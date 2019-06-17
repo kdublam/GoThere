@@ -6,14 +6,10 @@ M.Timepicker.init(timer, {
 });
 
 var myPlan = {};
+var geocoder;
 
 function initMap() {
-  var geocoder = new google.maps.Geocoder();
-
-  $("#submit").on("click", function () {
-    myPlan.arriveBy = getArrivalTime();
-    geocodeAddress(geocoder);
-  });
+  geocoder = new google.maps.Geocoder();
 }
 
 function geocodeAddress(geocoder) {
@@ -44,8 +40,7 @@ function geocodeAddress(geocoder) {
             data: myPlan // myPlan when map is integrated.
           }).then(
             function (response) {
-              // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
-              // Now we need to get matches from the database and render the result
+              // 'response' holds the matching plans from the database
               console.log("created new user input");
               console.log(response);
               // Reload the page to get the updated list
@@ -85,34 +80,50 @@ $(document).ready(function () {
 //     alert('Please fiil out all the fields');
 //     return false;
 //   }
+$("#submit").on("click", function () {
+  //alert the user if any input field is empty
+  if ($.trim($("#start").val()) === "" || $.trim($("#end").val()) === "" || $.trim($("#calendar").val()) === "" || $.trim($("#clock").val()) === "" || $.trim($("#transMethod").val()) === "") {
+    alert('Please fiil out all the fields');
+    return false;
+  }
+  myPlan.arriveBy = getArrivalTime();
+  geocodeAddress(geocoder);
+});
 
-//   //get the value of user input
+
+  //get the value of user input for database
+  // var start=$("#start").val().trim();
+  // var end=$("#end").val().trim();
+  // var dateText = $("#calendar").val();
+  // var timeText = $("#clock").val();
+  // var mode = $("#transMethod").children("option:selected").val()
+  // var newTimeText = convertTimeStringformat(24, timeText);
+  // var selectedTime = new Date(dateText + ' ' + newTimeText);
 
 
-//   // var myPlan = new Plan(currLat, currLong, destLat, destLong, destTime);  // Make active when map is integrated.
-//   var newPlan = {
-//     destination: $("#destination").val().trim(),
-//     arrivalDateTime: selectedTime,
-//     transMethod: $("#transMethod").children("option:selected").val()
+   //start and destination should be lat/long
+  // var newPlan = {   
+  //   start: start,
+  //   destination: end,
+  //   arrivalDateTime: selectedTime,
+  //   transMethod: mode
 
-//   }
+  // }
 
-//   console.log(newPlan)
+  // console.log(newPlan)
 
-//   $.ajax("/api/plans", {
-//     type: "POST",
-//     data: newPlan // myPlan when map is integrated.
-//   }).then(
-//     function (response) {
-//       // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
-//       // Now we need to get matches from the database and render the result
-//       console.log("created new user input");
-//       console.log(response);
-//       // Reload the page to get the updated list
-//       // location.reload();
-//     }
-//   );
-// });
+  // $.ajax("/api/plans", {
+  //   type: "POST",
+  //   data: newPlan
+  // }).then(
+  //   function () {
+  //     console.log("created new user input");
+  //     // Reload the page to get the updated list
+      
+  //    window.location.href ="/plans/" + plan.id
+  //   }
+  // );
+
 
 //alert user if past or today is selected. allow user to choose today after alerting.
 function checkDate() {
