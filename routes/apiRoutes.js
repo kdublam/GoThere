@@ -63,8 +63,8 @@ module.exports = function (app) {
               destLong: plan.destLong,
               arriveBy: {                 // within 30 minute range (15 minutes before or after)
                 [Op.and]: {
-                  [Op.lt]: plan.arriveBy + 15,
-                  [Op.gt]: plan.arriveBy - 15
+                  [Op.lt]: plan.arriveBy + 900000,
+                  [Op.gt]: plan.arriveBy - 900000
                 }
               }
             }
@@ -93,14 +93,15 @@ module.exports = function (app) {
     }).then(function (plan) {
       var dbQuery = {
         where: {
+          UserId: {[Op.ne]: req.body.UserId},
           currLat: plan.currLat,    // all lat/long precision 2 (xx.xx)
           currLong: plan.currLong,
           destLat: plan.destLat,
           destLong: plan.destLong,
           destTime: {                 // within 30 minute range (15 minutes before or after)
             [Op.and]: {
-              [Op.lt]: plan.arriveBy + 15,
-              [Op.gt]: plan.arriveBy - 15
+              [Op.lt]: plan.arriveBy + 900000,
+              [Op.gt]: plan.arriveBy - 900000
             }
           }
         }
