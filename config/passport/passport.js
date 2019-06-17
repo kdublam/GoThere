@@ -9,6 +9,7 @@ module.exports = function(passport, user) {
   });
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
+    console.log("deserializer");
     User.findByPk(id).then(function(user) {
       if (user) {
         done(null, user.get());
@@ -70,6 +71,7 @@ module.exports = function(passport, user) {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) {
+        console.log(req.body);
         var User = user;
         var isValidPassword = function(userpass, password) {
           return bCrypt.compareSync(password, userpass);
@@ -84,6 +86,8 @@ module.exports = function(passport, user) {
               return done(null, false, { message: "Incorrect password." });
             }
             var userinfo = user.get();
+            console.log("authenticated");
+            console.log(userinfo.id);
             return done(null, userinfo);
           })
           .catch(function(err) {

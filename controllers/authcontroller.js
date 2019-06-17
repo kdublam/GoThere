@@ -10,6 +10,8 @@ exports.signin = function(req, res) {
 };
 
 exports.home = function(req, res) {
+  console.log("****");
+  console.log(req.user);
   res.render("home", { mapKey: keys.google });
 };
 

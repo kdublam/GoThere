@@ -22,33 +22,40 @@ function geocodeAddress(geocoder) {
 
   geocoder.geocode({ "address": origin }, function (result, status) {
     if (status === 'OK') {
-      console.log(result);
-      myPlan.currLat = result[0].geometry.location.lat();
-      myPlan.currLong = result[0].geometry.location.lng();
+      var newLat = result[0].geometry.location.lat();
+      var newLong = result[0].geometry.location.lng();
+      newLat = parseFloat(newLat).toFixed(2);
+      newLong = parseFloat(newLong).toFixed(2);
+      myPlan.currLat = newLat;
+      myPlan.currLong = newLong;
       console.log(myPlan);
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-  geocoder.geocode({ "address": destination }, function (result, status) {
-    if (status === 'OK') {
-      console.log(result);
-      myPlan.destLat = result[0].geometry.location.lat();
-      myPlan.destLong = result[0].geometry.location.lng();
-      console.log(myPlan);
-      $.ajax("/api/plans", {
-        type: "POST",
-        data: myPlan // myPlan when map is integrated.
-      }).then(
-        function (response) {
-          // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
-          // Now we need to get matches from the database and render the result
-          console.log("created new user input");
-          console.log(response);
-          // Reload the page to get the updated list
-          // location.reload();
+      geocoder.geocode({ "address": destination }, function (result, status) {
+        if (status === 'OK') {
+          // console.log(result);
+          var newLat = result[0].geometry.location.lat();
+          var newLong = result[0].geometry.location.lng();
+          newLat = parseFloat(newLat).toFixed(2);
+          newLong = parseFloat(newLong).toFixed(2);    
+          myPlan.destLat = newLat;
+          myPlan.destLong = newLong;
+          console.log(myPlan);
+          $.ajax("/api/plans", {
+            type: "POST",
+            data: myPlan // myPlan when map is integrated.
+          }).then(
+            function (response) {
+              // 'response' holds the users plan data.  (We've already got that in myPlan, so we don't really need it.)
+              // Now we need to get matches from the database and render the result
+              console.log("created new user input");
+              console.log(response);
+              // Reload the page to get the updated list
+              // location.reload();
+            }
+          );
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
         }
-      );
+      });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }

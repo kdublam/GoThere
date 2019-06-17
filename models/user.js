@@ -47,7 +47,10 @@ module.exports = function(sequelize, Sequelize) {
   });
   User.associate = function(models) {
     User.hasMany(models.Plan, {
-      onDelete: "cascade"
+      onDelete: "cascade",
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
 
