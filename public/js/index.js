@@ -8,7 +8,7 @@ M.Timepicker.init(timer, {
 var myPlan = {};
 var geocoder;
 
-function initMap() {
+function initGeocode() {
   geocoder = new google.maps.Geocoder();
 }
 

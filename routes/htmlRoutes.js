@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.get("/result", function(req, res) {
     // get the query from the url (req.params...) and pass it to the db
     //db.Plans.findAll({dbquery}).then(function(dbResult) {
-      res.render("result", {data: dbResult}); // this is a framework, not necessarily literal code.
+      res.render("result", {data: req.body.plans}); // this is a framework, not necessarily literal code.
     // });
   });
   // Load index page
