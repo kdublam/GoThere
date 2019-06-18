@@ -73,7 +73,15 @@ i{
 #userInput{
   margin-top:2rem;
 }
-.input-field #destination{
+
+.input-field #start{
+  height: 4rem;
+ 
+  margin-top: 1rem;
+  padding:0.5rem;
+  font-size: 1.5rem;
+}
+.input-field #end{
   height: 4rem;
  
   margin-top: 1rem;

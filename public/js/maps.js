@@ -13,9 +13,9 @@ function initMap() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
 
-  // document.getElementById("submit").addEventListener("click", function () {
+  
   calculateAndDisplayRoute(directionsService, directionsDisplay);
-  // });
+
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -62,6 +62,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     //   window.alert('Directions request failed due to ' + status);
     // }
   });
+  window.location.href ="/result"
 }
 
 // const googleMapsScript = document.createElement('script');
