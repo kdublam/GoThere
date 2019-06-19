@@ -66,12 +66,13 @@ module.exports = function (app) {
                   [Op.lt]: plan.arriveBy + 900000,
                   [Op.gt]: plan.arriveBy - 900000
                 }
-              }
-            }
+              },
+            },
+            include: [db.User]
           }
           db.Plan.findAll(dbQuery).then(function (plans) {
             console.log(plans);
-            res.redirect("/result");
+            res.json(plans);
           });
           // sends back the plan that was inserted into the database
           // res.json(plan);

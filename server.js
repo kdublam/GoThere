@@ -7,13 +7,11 @@ var bodyParser = require("body-parser");
 // var env = require('dotenv').load();
 
 var db = require("./models");
-db.Plan.associate = function(db) {
-  db.Plan.belongsTo(db.User, {
-    foreignKey: {
-      allowNull: false
-    }
-  });
-};
+db.Plan.belongsTo(db.User, {
+  foreignKey: {
+    allowNull: false
+  }
+});
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -63,8 +61,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,

@@ -10,32 +10,22 @@
       </ul>
     </div>
   </nav>
-
-
-
 </div>
+
 <ul class="sidenav" id="mobile-demo">
   <li><a href="/home">Home</a></li>
   <li><a href="/logout">Log-out</a></li>
 
 </ul>
 
-
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo left"><img class="logo" src="images/logo4.png" width="85%"> </a>
-      <ul id="nav-mobile" class="right">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/logout">Log-out</a></li>
-      </ul>
-    </div>
-  </nav>
-</div>
-
 {{!-- display map route --}}
-<div class = "container">
+<div class="container">
   <div id="map"></div>
+  <span id="start">{{start}}</span>
+  <span id="end">{{end}}</span>
+  <span id="calendar">{{calendar}}</span>
+  <span id="clock">{{clock}}</span>
+  <span id="transMethod">{{transMethod}}</span>
 
   <div id="directions"></div>
 
@@ -67,3 +57,6 @@
     </div>
   </div>
 </div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm4aPJGDNZiUQ1xbP5TAncDiR2hJdOP-M&callback=initMap"></script>
