@@ -24,7 +24,7 @@ GoThere find you matching friends with a similar trip plan. The app is ideal for
 * Users can contact the matching person to plan a trip together
 
 ## Future Development
-### Add in-app messenger functionality for better user experience
-### Add google navigation functionality for users who choose driving option
-### Add google log-in
+* Add in-app messenger functionality for better user experience
+* Add google navigation functionality for users who choose driving option
+* Add google log-in
 
