@@ -14,7 +14,9 @@ function initMap() {
   };
 
   
-  calculateAndDisplayRoute(directionsService, directionsDisplay);
+  document.getElementById("submit").addEventListener("click", function () {
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+  });
 
 }
 
@@ -25,14 +27,13 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
   var dateText = document.getElementById("calendar").value;
   var timeText = document.getElementById("clock");
-  var newTimeText = convertTimeStringformat(24, timeText);
+  
 
-  var arrTime = new Date(dateText + " " + newTimeText);
-  console.log(arrTime);
-  var acceptedMapTime = new Date(arrTime);
-  console.log(acceptedMapTime);
+  var selectedTime = new Date(dateText + " " + timeText);
+  console.log(selectedTime);
+  
 
-  if (acceptedMapTime <= Date.now()) {
+  if (selectedTime <= Date.now()) {
     alert("Date has to be in the future");
   } else {
     var routeOptions = {
@@ -62,7 +63,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     //   window.alert('Directions request failed due to ' + status);
     // }
   });
-  window.location.href ="/result"
+  // window.location.href ="/result"
 }
 
 // const googleMapsScript = document.createElement('script');

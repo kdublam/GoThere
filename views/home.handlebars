@@ -80,14 +80,14 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Starting point" id="start" type="text" class="validate">
+            <input placeholder="Starting point" id="start" name="start" type="text" class="validate">
             <label for="start">Where is your starting point?</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Destination" id="end" type="text" class="validate">
+            <input placeholder="Destination" id="end" name="end" type="text" class="validate">
             <label for="end">Where are you going?</label>
           </div>
         </div>
@@ -96,7 +96,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy"
+            <input id="calendar" name="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy"
               type="date" data-date-format="yyyy-mm-dd">
             <label for="calendar">Pick date</label>
           </div>
@@ -106,7 +106,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="hh:mm" id="clock" onchange="checkTime()" type="text" class="timepicker">
+            <input placeholder="hh:mm" id="clock" name="clock" onchange="checkTime()" type="text" class="timepicker">
             <label for="time">Pick time(Arrival Time)</label>
           </div>
         </div>
@@ -114,7 +114,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <select id="transMethod">
+            <select id="transMethod" name="transMethod">
               <option value="" disabled selected>Choose your option</option>
               <option value="WALKING">Walking</option>
               <option value="DRIVING">Driving</option>
@@ -125,21 +125,31 @@
           </div>
         </div>
     </div>
-
+        <input class="waves-effect waves-light btn" id="submit" type="submit">
     </form>
-    <a class="waves-effect waves-light btn" id="submit">Submit</a>
+    
   </div>
 
 </div>
+
+
 <!-- closing useGoThere div -->
 
 
+<div class = "container">
+  <div id="map"></div>
 
+  <div id="directions"></div>
+
+</div>
 
 
 
 </div>
 {{!-- closing container div --}}
 
-{{!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initGeocode"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap"></script> --}}
+ 
+
+{{!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initGeocode"></script> --}}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6vOfh4KmyEnuzarS4_QpRHEDiwiV93ic&callback=initMap"></script>
+ <script src="js/maps.js"></script>
