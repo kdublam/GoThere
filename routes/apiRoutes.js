@@ -49,6 +49,7 @@ module.exports = function (app) {
     console.log(req.user);
     if (req.user) {
       req.body.UserId = req.user.id;
+      console.log("*** /api/plans request");
       console.log(req.body);
       db.Plan.create(req.body)
         .then(function (plan) {
@@ -71,6 +72,7 @@ module.exports = function (app) {
             include: [db.User]
           }
           db.Plan.findAll(dbQuery).then(function (plans) {
+            console.log("*** /api/plans result");
             console.log(plans);
             res.json(plans);
           });
