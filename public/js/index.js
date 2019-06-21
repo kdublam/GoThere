@@ -1,3 +1,4 @@
+// This file is unused.  See home.js
 // we only need 2 decimal places in our lat/long: xx.xx, xxx.xx
 
 const timer = document.querySelector('.timepicker');
@@ -17,6 +18,7 @@ function geocodeAddress(geocoder) {
   var destination = $("#end").val().trim();
 
   geocoder.geocode({ "address": origin }, function (result, status) {
+    console.log("GEOCODING");
     if (status === 'OK') {
       var newLat = result[0].geometry.location.lat();
       var newLong = result[0].geometry.location.lng();

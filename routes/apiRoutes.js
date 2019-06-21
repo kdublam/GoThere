@@ -1,7 +1,14 @@
+var keys = require("../config/keys");
 var db = require("../models");
 const Op = db.Sequelize.Op;
 
 module.exports = function (app) {
+  // GOOGLE
+  app.get("/api/google/:script", function(req, res) {
+    // Obfuscates our Google API key.  It can still be read by analyzing the client traffic, but it's not visible in the source.
+    res.redirect("https://maps.googleapis.com/maps/api/js?key=" + keys.google + "&callback=" + req.params.script);
+  });
+
   // USERS
   // Get all users
   app.get("/api/users", function (req, res) {
