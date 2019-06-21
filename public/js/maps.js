@@ -1,3 +1,17 @@
+// Plan variables:
+var myPlan = {};
+
+var start;
+var end;
+var mode;
+var selectedTime;
+
+// Expose Google Maps API methods to our code:
+var geocoder;
+var directionsDisplay;
+var directionsService;
+var map;
+
 //initMap is passed to the google maps API.  We do not call it.
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -19,6 +33,20 @@ function initMap() {
   });
 
 }
+
+// Document load...
+$(function () {
+  start = $("#start").text();
+  end = $("#end").text();
+  mode = $("#transMethod").text();
+  selectedTime = getArrivalTime();
+  myPlan.arriveBy = selectedTime;
+  geocodeAddress(geocoder);
+  directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById("directions"));
+
+  calculateAndDisplayRoute(directionsService, directionsDisplay);
+});
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   var start = document.getElementById("start").value;

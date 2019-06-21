@@ -129,7 +129,7 @@ $("#submit").on("click", function () {
   geocodeAddress();
   
 
-  // window.location.href ="/result"
+  window.location.href ="/result"
   
   
   

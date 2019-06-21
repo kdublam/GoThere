@@ -24,12 +24,17 @@
 
 
 {{!-- display map route --}}
-{{!-- <div class = "container">
+<div class="container">
   <div id="map"></div>
+  <span id="start">{{start}}</span>
+  <span id="end">{{end}}</span>
+  <span id="calendar">{{calendar}}</span>
+  <span id="clock">{{clock}}</span>
+  <span id="transMethod">{{transMethod}}</span>
 
   <div id="directions"></div>
 
-</div> --}}
+</div>
 
 
 {{!-- display matches --}}
@@ -52,4 +57,8 @@
   </div>
 </div> --}}
 
+ 
+  
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6vOfh4KmyEnuzarS4_QpRHEDiwiV93ic&callback=initMap"></script>
+  <script src="js/maps.js"></script>
  
