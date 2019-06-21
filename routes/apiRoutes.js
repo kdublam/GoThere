@@ -1,7 +1,14 @@
+var keys = require("../config/keys");
 var db = require("../models");
 const Op = db.Sequelize.Op;
 
 module.exports = function (app) {
+  // GOOGLE
+  app.get("/api/google/:script", function(req, res) {
+    // Obfuscates our Google API key.  It can still be read by analyzing the client traffic, but it's not visible in the source.
+    res.redirect("https://maps.googleapis.com/maps/api/js?key=" + keys.google + "&callback=" + req.params.script);
+  });
+
   // USERS
   // Get all users
   app.get("/api/users", function (req, res) {
@@ -49,6 +56,7 @@ module.exports = function (app) {
     console.log(req.user);
     if (req.user) {
       req.body.UserId = req.user.id;
+      console.log("*** /api/plans request");
       console.log(req.body);
       db.Plan.create(req.body)
         .then(function (plan) {
@@ -66,12 +74,14 @@ module.exports = function (app) {
                   [Op.lt]: plan.arriveBy + 900000,
                   [Op.gt]: plan.arriveBy - 900000
                 }
-              }
-            }
+              },
+            },
+            include: [db.User]
           }
           db.Plan.findAll(dbQuery).then(function (plans) {
+            console.log("*** /api/plans result");
             console.log(plans);
-            res.redirect("/result");
+            res.json(plans);
           });
           // sends back the plan that was inserted into the database
           // res.json(plan);

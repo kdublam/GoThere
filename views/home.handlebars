@@ -76,7 +76,7 @@
 
     <div class="row" id="userInput">
 
-      <form class="col s12">
+      <form class="col s12" action="/result" method="POST">
 
         <div class="row">
           <div class="input-field col s12">
@@ -96,8 +96,8 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="calendar" name="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy"
-              type="date" data-date-format="yyyy-mm-dd">
+            <input id="calendar" name="calendar" onchange="checkDate()" required class="datepicker-input"
+              placeholder="mm/dd/yyy" type="date" data-date-format="yyyy-mm-dd">
             <label for="calendar">Pick date</label>
           </div>
         </div>
@@ -124,44 +124,32 @@
             <label for="transMethod">Choose your transportaion</label>
           </div>
         </div>
+        <input type="submit" class="waves-effect waves-light btn" id="submit">
+      </form>
     </div>
-        <input class="waves-effect waves-light btn" id="submit" type="submit">
-    </form>
-    
+
   </div>
 
 </div>
-
-
 <!-- closing useGoThere div -->
 
-{{!-- 
-<div class = "container">
-  <div id="map"></div>
 
-  <div id="directions"></div>
 
-</div> --}}
 
 
 
 </div>
 {{!-- closing container div --}}
-
- 
-
- <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- materialize -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- moment.js -->
-  <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
-  {{!-- googlemaps api --}}
-    {{!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap"></script> --}}
-  <!-- javascript file -->
-  <script src="js/index.js"></script>
-  <script src="js/maps.js"></script>
-{{!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initGeocode"></script> --}}
-
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- materialize -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- moment.js -->
+<script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+{{!-- googlemaps api --}}
+{{!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap"></script> --}}
+<!-- javascript file -->
+<script src="js/index.js"></script>
+{{!-- <script src="api/google/initGeocode"></script> --}}
