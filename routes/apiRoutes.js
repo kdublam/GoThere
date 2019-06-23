@@ -74,11 +74,12 @@ module.exports = function (app) {
                 }
               },
             },
+            order: [['id', 'DESC']],
             include: [{
               model: db.User,
               attributes: ["firstname", "email"]
             }],
-            attributes: ["UserId"]
+            attributes: ["id", "UserId"]
           }        
           // console.log(plan);
           // console.log(typeof plan.currLat);
