@@ -71,8 +71,8 @@ module.exports = function (app) {
               destLong: plan.destLong,
               arriveBy: {                 // within 30 minute range (15 minutes before or after)
                 [Op.and]: {
-                  [Op.lt]: plan.arriveBy + 900000,
-                  [Op.gt]: plan.arriveBy - 900000
+                  [Op.lte]: plan.arriveBy.getTime() + 900000,   // Seriously, WTF?
+                  [Op.gte]: plan.arriveBy - 900000
                 }
               },
             },
@@ -110,8 +110,8 @@ module.exports = function (app) {
           destLong: plan.destLong,
           destTime: {                 // within 30 minute range (15 minutes before or after)
             [Op.and]: {
-              [Op.lt]: plan.arriveBy + 900000,
-              [Op.gt]: plan.arriveBy - 900000
+              [Op.lte]: plan.arriveBy + 900000,
+              [Op.gte]: plan.arriveBy - 900000
             }
           }
         }

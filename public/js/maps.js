@@ -27,7 +27,7 @@ function initMap() {
 }
 
 // Document load...
-$(function () {
+$(function() {
   start = $("#start").text();
   end = $("#end").text();
   mode = $("#transMethod").text();
@@ -35,22 +35,22 @@ $(function () {
   myPlan.arriveBy = acceptedMapTime;
   geocodeAddress(geocoder);
   directionsDisplay.setMap(map);
-  directionsDisplay.setPanel(document.getElementById('directions'));
+  directionsDisplay.setPanel(document.getElementById("directions"));
 
   calculateAndDisplayRoute(directionsService, directionsDisplay);
 });
 
 // I'm not sure if this is implemented...
-var onChangeHandler = function () {
+var onChangeHandler = function() {
   calculateAndDisplayRoute(directionsService, directionsDisplay);
 };
 
 // document.getElementById("submit").addEventListener("click", function () {
 // });
 function geocodeAddress(geocoder) {
-  geocoder.geocode({ "address": start }, function (result, status) {
+  geocoder.geocode({ address: start }, function(result, status) {
     console.log("GEOCODING");
-    if (status === 'OK') {
+    if (status === "OK") {
       var newLat = result[0].geometry.location.lat();
       var newLong = result[0].geometry.location.lng();
       newLat = parseFloat(newLat).toFixed(2);
@@ -58,8 +58,8 @@ function geocodeAddress(geocoder) {
       myPlan.currLat = newLat;
       myPlan.currLong = newLong;
       console.log(myPlan);
-      geocoder.geocode({ "address": end }, function (result, status) {
-        if (status === 'OK') {
+      geocoder.geocode({ address: end }, function(result, status) {
+        if (status === "OK") {
           // console.log(result);
           var newLat = result[0].geometry.location.lat();
           var newLong = result[0].geometry.location.lng();
@@ -71,26 +71,25 @@ function geocodeAddress(geocoder) {
           $.ajax("/api/plans", {
             type: "POST",
             data: myPlan // myPlan when map is integrated.
-          }).then(
-            function (response) {
-              // 'response' holds the matching plans from the database
-              console.log("created new user input");
-              console.log(response);
-              // Reload the page to get the updated list
-              // location.reload();
-            }
-          );
+          }).then(function(response) {
+            // 'response' holds the matching plans from the database
+            console.log("created new user input");
+            console.log(response);
+            // Reload the page to get the updated list
+            // location.reload();
+          });
         } else {
-          alert('Geocode was not successful for the following reason: ' + status);
+          alert(
+            "Geocode was not successful for the following reason: " + status
+          );
         }
       });
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      alert("Geocode was not successful for the following reason: " + status);
     }
   });
 }
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-
   if (acceptedMapTime <= Date.now()) {
     alert("Date has to be in the future");
   } else {
@@ -109,7 +108,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     }
     console.log(routeOptions);
   }
-  directionsService.route(routeOptions, function (response, status) {
+  directionsService.route(routeOptions, function(response, status) {
     if (status === "OK") {
       console.log(response);
       console.log(status);
@@ -127,20 +126,19 @@ function getArrivalTime() {
   var dateText = $("#calendar").text();
   var timeText = $("#clock").text();
   var newTimeText = convertTimeStringformat(24, timeText);
-  var selectedTime = new Date(dateText + ' ' + newTimeText);
+  var selectedTime = new Date(dateText + " " + newTimeText);
   return selectedTime;
 }
 
-// this still needs alteration to work
 function convertTimeStringformat(format, time) {
   var hours = Number(time.match(/^(\d+)/)[1]);
   var minutes = Number(time.match(/:(\d+)/)[1]);
   var AMPM = time.match(/\s(.*)$/)[1];
-  if (AMPM == "PM" && hours < 12) hours = hours + 12;
-  if (AMPM == "AM" && hours == 12) hours = hours - 12;
+  if (AMPM === "PM" && hours < 12) hours = hours + 12;
+  if (AMPM === "AM" && hours === 12) hours = hours - 12;
   var sHours = hours.toString();
   var sMinutes = minutes.toString();
   if (hours < 10) sHours = "0" + sHours;
   if (minutes < 10) sMinutes = "0" + sMinutes;
-  return (sHours + ":" + sMinutes);
+  return sHours + ":" + sMinutes;
 }
