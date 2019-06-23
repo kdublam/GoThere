@@ -108,7 +108,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     }
     console.log(routeOptions);
   }
-  directionsService.route(routeOptions, function(response, status) {
+  directionsService.route(routeOptions, function (response, status) {
     if (status === "OK") {
       console.log(response);
       console.log(status);
