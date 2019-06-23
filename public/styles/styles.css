@@ -1,3 +1,7 @@
+#map {
+  height: 500px;
+}
+
 body{
   font-family: 'Abel', sans-serif;
   margin: 0px;
@@ -69,7 +73,7 @@ i{
 #userInput{
   margin-top:2rem;
 }
-.input-field #destination{
+.input-field #end,.input-field #start {
   height: 4rem;
  
   margin-top: 1rem;
@@ -112,6 +116,10 @@ input.select-dropdown.dropdown-trigger{
   
   font-size: 2rem;
 
+}
+
+#submit{
+  color:white;
 }
 
 #authLogo{

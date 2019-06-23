@@ -5,7 +5,7 @@ module.exports = function(app, passport) {
 
   app.get("/signin", authController.signin);
 
-  app.get("/signin", authController.signin);
+  // app.get("/signin", authController.signin);
 
   app.get("/home", isLoggedIn, authController.home);
 
@@ -24,6 +24,7 @@ module.exports = function(app, passport) {
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
+      // console.log(req.body);
       return next();
     }
 

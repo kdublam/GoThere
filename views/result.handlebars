@@ -1,26 +1,72 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><img class="logo" src="images/logo4.png" width="85%"> </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/logout">Log-out</a></li>
+
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/home">Home</a></li>
+  <li><a href="/logout">Log-out</a></li>
+
+</ul>
+
+{{!-- display map route --}}
 <div class="container">
-    <div class="row">
+  <div id="map"></div>
+  <span id="start">{{start}}</span>
+  <span id="end">{{end}}</span>
+  <span id="calendar">{{calendar}}</span>
+  <span id="clock">{{clock}}</span>
+  <span id="transMethod">{{transMethod}}</span>
+
+  <div id="directions"></div>
+
+</div>
+
+
+{{!-- display matches --}}
+<div class="container">
+  <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title">We found a match!</h5>
           <p>
-            <strong>Name</strong>: {{person.name}}</p>
+            <strong>Name</strong>: {{user.name}}</p>
           <p>
-          <p>
-            <strong>Destination</strong>: {{person.destination}}</p>
-          <p>
-            <strong>Date:</strong> {{person.date}}</p>
-          
-           <p>
-            <strong>Time:</strong> {{person.time}}</p>
-          <p>
-            <strong>Transportation:</strong> {{person.transportation}}</p>
-          <p>
-            <strong>Contact:</strong> {{person.contact}}</p>
-           
+            <p>
+              <strong>Destination</strong>: {{plan.destination}}</p>
+            <p>
+              <strong>Arrival Date Time</strong> {{plan.arrivalDateTime}}</p>
+
+            <p>
+              <strong>Transportation:</strong> {{plan.transportation}}</p>
+            <p>
+              <strong>Contact:</strong> {{user.email}}</p>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- materialize -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+<!-- javascript file -->
+{{!-- <script src="js/index.js"></script> --}}
+<script src="js/maps.js"></script>
+<script src="api/google/initMap"></script>

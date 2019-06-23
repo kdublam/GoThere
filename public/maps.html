@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #map {
+            height: 200px;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="mapDirec">
+        <strong>Start:</strong>
+        <!-- <input type="text" id="start" value="Some text..."> -->
+        <input type="text" id="start" value="Seattle">
+        <br>
+
+        <strong>End:</strong>
+        <input type="text" id="end" value="Lynnwood">
+        <br>
+
+        <strong>Arrival Time:</strong>
+        <input type="datetime-local" name="datetime"  id="time" placeholder="">
+        <br>
+    
+        <strong>Travel Mode:</strong>
+        <select id="mode">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+        </select>
+        <button id = "submit">Try it</button>
+    </div>
+    <div id="directions"></div>
+    <div id="map"></div>
+
+    <!-- Replace the value of the key parameter with your own API key.  PUT THIS IN PUBLIC-->
+    <!-- <script src="moment.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqkFyDzzmxCdHCqKjjEnO7COHGRXxfqX4&callback=initMap">
+        </script>
+    <script src="./js/maps.js"></script>
+   
+</body>
+
+</html>

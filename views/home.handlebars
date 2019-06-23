@@ -1,8 +1,9 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo left"><img class="logo" src="images/logo4.png" width="85%"> </a>
-      <ul id="nav-mobile" class="right">
+      <a href="#" class="brand-logo"><img class="logo" src="images/logo4.png" width="85%"> </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#useGoThere">Use GoThere</a></li>
@@ -10,11 +11,20 @@
       </ul>
     </div>
   </nav>
+
+
+
 </div>
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="#">Home</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#useGoThere">Use GoThere</a></li>
+  <li><a href="/logout">Log-out</a></li>
+</ul>
 
 
 {{!-- parallax img 1 --}}
-  <div class="parallax-container">
+<div class="parallax-container">
   <div class="parallax">
     <img class="mainPic" src="images/rideshare2.jpg">
   </div>
@@ -54,10 +64,10 @@
 
 {{!-- parallax img2 --}}
 <div class="parallax-container">
-        <div class="parallax">
-          <img class="mainPic" src="images/bus_stop.jpg">
-        </div>
-      </div>
+  <div class="parallax">
+    <img class="mainPic" src="images/bus_stop.jpg">
+  </div>
+</div>
 
 
 <div class="container">
@@ -66,11 +76,19 @@
 
     <div class="row" id="userInput">
 
-      <form class="col s12">
+      <form class="col s12" action="/result" method="POST">
+
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Destination" id="destination" type="text" class="validate">
-            <label for="destination">Where are you going?</label>
+            <input placeholder="Starting point" id="start" name="start" type="text" class="validate">
+            <label for="start">Where is your starting point?</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Destination" id="end" name="end" type="text" class="validate">
+            <label for="end">Where are you going?</label>
           </div>
         </div>
 
@@ -78,7 +96,8 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="calendar" onchange="checkDate()" required class="datepicker-input" placeholder="mm/dd/yyy" type="date" data-date-format="yyyy-mm-dd" >
+            <input id="calendar" name="calendar" onchange="checkDate()" required class="datepicker-input"
+              placeholder="mm/dd/yyy" type="date" data-date-format="yyyy-mm-dd">
             <label for="calendar">Pick date</label>
           </div>
         </div>
@@ -87,31 +106,32 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="hh:mm" id="clock" onchange="checkTime()" type="text" class="timepicker">
+            <input placeholder="hh:mm" id="clock" name="clock" onchange="checkTime()" type="text" class="timepicker">
             <label for="time">Pick time(Arrival Time)</label>
           </div>
         </div>
 
 
         <div class="row">
-              <div class="input-field col s12">
-                  <select id="transMethod">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="Walking">Walking</option>
-                    <option value="Driving">Driving</option>
-                    <option value="Transit">Transit</option>
-                    <option value="Bike">Bike</option>
-                  </select>
-                  <label for ="transMethod">Choose your transportaion</label>
-                </div>
+          <div class="input-field col s12">
+            <select id="transMethod" name="transMethod">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="WALKING">Walking</option>
+              <option value="DRIVING">Driving</option>
+              <option value="TRANSIT">Transit</option>
+              <option value="BICYCLING">Bike</option>
+            </select>
+            <label for="transMethod">Choose your transportaion</label>
           </div>
-
+        </div>
+        <input type="submit" class="waves-effect waves-light btn" id="submit">
       </form>
-      <a class="waves-effect waves-light btn" id="submit">Submit</a>
     </div>
 
   </div>
-  <!-- closing useGoThere div -->
+
+</div>
+<!-- closing useGoThere div -->
 
 
 
@@ -120,3 +140,14 @@
 
 </div>
 {{!-- closing container div --}}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- materialize -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- moment.js -->
+<script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+<!-- javascript file -->
+<script src="js/home.js"></script>
+{{!-- <script src="api/google/initGeocode"></script> --}}
