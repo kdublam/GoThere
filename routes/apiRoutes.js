@@ -60,8 +60,6 @@ module.exports = function (app) {
       console.log(req.body);
       db.Plan.create(req.body)
         .then(function (plan) {
-          // console.log(plan);
-          console.log(typeof plan.currLat);
           var dbQuery = {
             where: {
               UserId: {[Op.ne]: req.body.UserId},
@@ -76,8 +74,14 @@ module.exports = function (app) {
                 }
               },
             },
-            include: [db.User]
-          }
+            include: [{
+              model: db.User,
+              attributes: ["firstname", "email"]
+            }],
+            attributes: ["UserId"]
+          }        
+          // console.log(plan);
+          // console.log(typeof plan.currLat);
           db.Plan.findAll(dbQuery).then(function (plans) {
             console.log("*** /api/plans result");
             console.log(plans);
@@ -108,14 +112,16 @@ module.exports = function (app) {
           currLong: plan.currLong,
           destLat: plan.destLat,
           destLong: plan.destLong,
-          destTime: {                 // within 30 minute range (15 minutes before or after)
+          arriveBy: {                 // within 30 minute range (15 minutes before or after)
             [Op.and]: {
-              [Op.lte]: plan.arriveBy + 900000,
+              [Op.lte]: plan.arriveBy.getTime() + 900000,   // Seriously, WTF?
               [Op.gte]: plan.arriveBy - 900000
             }
-          }
-        }
-      }
+          },
+        },
+        include: [db.User],
+        attributes: [db.User.firstname, db.User.email]
+      }    
       db.Plan.findAll(dbQuery).then(function (plans) {
         console.log(plans);
         res.json(plans);
