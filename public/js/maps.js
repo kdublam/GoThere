@@ -27,7 +27,7 @@ function initMap() {
 }
 
 // Document load...
-$(function() {
+$(function () {
   start = $("#start").text();
   end = $("#end").text();
   mode = $("#transMethod").text();
@@ -41,14 +41,14 @@ $(function() {
 });
 
 // I'm not sure if this is implemented...
-var onChangeHandler = function() {
+var onChangeHandler = function () {
   calculateAndDisplayRoute(directionsService, directionsDisplay);
 };
 
 // document.getElementById("submit").addEventListener("click", function () {
 // });
 function geocodeAddress(geocoder) {
-  geocoder.geocode({ address: start }, function(result, status) {
+  geocoder.geocode({ address: start }, function (result, status) {
     console.log("GEOCODING");
     if (status === "OK") {
       var newLat = result[0].geometry.location.lat();
@@ -58,7 +58,7 @@ function geocodeAddress(geocoder) {
       myPlan.currLat = newLat;
       myPlan.currLong = newLong;
       console.log(myPlan);
-      geocoder.geocode({ address: end }, function(result, status) {
+      geocoder.geocode({ address: end }, function (result, status) {
         if (status === "OK") {
           // console.log(result);
           var newLat = result[0].geometry.location.lat();
@@ -71,10 +71,11 @@ function geocodeAddress(geocoder) {
           $.ajax("/api/plans", {
             type: "POST",
             data: myPlan // myPlan when map is integrated.
-          }).then(function(response) {
+          }).then(function (response) {
             // 'response' holds the matching plans from the database
             console.log("created new user input");
             console.log(response);
+            displayResults(response)
             // Reload the page to get the updated list
             // location.reload();
           });
@@ -89,6 +90,40 @@ function geocodeAddress(geocoder) {
     }
   });
 }
+
+function displayResults(response) {
+  if (response.length === 0) {
+    $("#match-result").text("Sorry. There isn't any matching trip");
+  }
+  // Add to the table here...
+  // $("tbody").empty();
+  else {
+    var newResponse = removeDuplicates(response);
+    console.log(newResponse);
+
+    for (var i = 0; i < newResponse.length; i++) {
+      var tr = $("<tr>").append(
+        $("<td>").text(newResponse[i].User.firstname),
+        $("<td>").text(newResponse[i].User.email)
+      );
+      $("#match-result").text("We found matching trip partners for you");
+      $("#match").append(tr);
+    }
+  }
+}
+
+      
+function removeDuplicates(arr) {
+        
+  return Object.keys(arr.reduce((acc, val) => {
+    arr.forEach(function(v){ delete v.id });
+      acc[JSON.stringify(val)] = 1;
+
+      return acc;
+  }, {})).map((val, key, array) => JSON.parse(array[key]))
+}
+
+
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   if (acceptedMapTime <= Date.now()) {
     alert("Date has to be in the future");
@@ -121,6 +156,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     // }
   });
 }
+
+
+
 
 function getArrivalTime() {
   var dateText = $("#calendar").text();

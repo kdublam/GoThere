@@ -135,3 +135,11 @@ input.select-dropdown.dropdown-trigger{
   text-align: left;
 }
 
+#match-result{
+  margin-top:3rem;
+  padding-left:3rem;
+}
+
+th, td{
+  padding-left:3rem;
+}
