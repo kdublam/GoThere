@@ -135,7 +135,8 @@ input.select-dropdown.dropdown-trigger{
   text-align: left;
 }
 
-h5{
+#match-result{
+  margin-top:3rem;
   padding-left:3rem;
 }
 

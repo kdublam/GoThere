@@ -92,15 +92,35 @@ function geocodeAddress(geocoder) {
 }
 
 function displayResults(response) {
+  if (response.length === 0) {
+    $("#match-result").text("Sorry. There isn't any matching trip");
+  }
   // Add to the table here...
   // $("tbody").empty();
-  for (var i = 0; i < response.length; i++) {
-    var tr = $("<tr>").append(
-      $("<td>").text(response[i].User.firstname),
-      $("<td>").text(response[i].User.email)
-    );
-    $("#match").append(tr);
+  else {
+    var newResponse = removeDuplicates(response);
+    console.log(newResponse);
+
+    for (var i = 0; i < newResponse.length; i++) {
+      var tr = $("<tr>").append(
+        $("<td>").text(newResponse[i].User.firstname),
+        $("<td>").text(newResponse[i].User.email)
+      );
+      $("#match-result").text("We found matching trip partners for you");
+      $("#match").append(tr);
+    }
   }
+}
+
+      
+function removeDuplicates(arr) {
+        
+  return Object.keys(arr.reduce((acc, val) => {
+    arr.forEach(function(v){ delete v.id });
+      acc[JSON.stringify(val)] = 1;
+
+      return acc;
+  }, {})).map((val, key, array) => JSON.parse(array[key]))
 }
 
 
