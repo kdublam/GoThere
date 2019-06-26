@@ -135,3 +135,10 @@ input.select-dropdown.dropdown-trigger{
   text-align: left;
 }
 
+h5{
+  padding-left:3rem;
+}
+
+th, td{
+  padding-left:3rem;
+}

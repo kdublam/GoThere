@@ -39,18 +39,19 @@
       <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title">We found a match!</h5>
-          <p>
-            <strong>Name</strong>: {{user.name}}</p>
-          <p>
-            <p>
-              <strong>Destination</strong>: {{plan.destination}}</p>
-            <p>
-              <strong>Arrival Date Time</strong> {{plan.arrivalDateTime}}</p>
+          <table >
+            <thead>
+              <tr>
+                <th id="match-name">Name</th>
+                <th id="match-contact">email</th>
+                
+              </tr>
+            </thead>
+            <tbody id="match">
+              <!-- Results from DB here -->
+            </tbody>
 
-            <p>
-              <strong>Transportation:</strong> {{plan.transportation}}</p>
-            <p>
-              <strong>Contact:</strong> {{user.email}}</p>
+          </table>
 
         </div>
       </div>
