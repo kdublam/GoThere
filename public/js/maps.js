@@ -106,7 +106,7 @@ function displayResults(response) {
         $("<td>").text(newResponse[i].User.firstname),
         $("<td>").text(newResponse[i].User.email)
       );
-      $("#match-result").text("We found matching trip partners for you");
+      $("#match-result").text("We found matching trip partners for you. Contact the partners and coordinate a trip!");
       $("#match").append(tr);
     }
   }
