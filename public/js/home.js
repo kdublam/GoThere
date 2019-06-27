@@ -5,13 +5,7 @@ M.Timepicker.init(timer, {
   showClearBtn: true
 });
 
-// function getArrivalTime() {
-//   var dateText = $("#calendar").val();
-//   var timeText = $("#clock").val();
-//   var newTimeText = convertTimeStringformat(24, timeText);
-//   var selectedTime = new Date(dateText + ' ' + newTimeText);
-//   return moment.format(selectedTime);
-// }
+
 
 $(document).ready(function () {
   $('.sidenav').sidenav();
@@ -28,44 +22,12 @@ $("#submit").on("click", function () {
 });
 
 
-  //get the value of user input for database
-  // var start=$("#start").val().trim();
-  // var end=$("#end").val().trim();
-  // var dateText = $("#calendar").val();
-  // var timeText = $("#clock").val();
-  // var mode = $("#transMethod").children("option:selected").val()
-  // var newTimeText = convertTimeStringformat(24, timeText);
-  // var selectedTime = new Date(dateText + ' ' + newTimeText);
-
-
-   //start and destination should be lat/long
-  // var newPlan = {   
-  //   start: start,
-  //   destination: end,
-  //   arrivalDateTime: selectedTime,
-  //   transMethod: mode
-
-  // }
-
-  // console.log(newPlan)
-
-  // $.ajax("/api/plans", {
-  //   type: "POST",
-  //   data: newPlan
-  // }).then(
-  //   function () {
-  //     console.log("created new user input");
-  //     // Reload the page to get the updated list
-      
-  //    window.location.href ="/plans/" + plan.id
-  //   }
-  // );
-
 
 //alert user if past or today is selected. allow user to choose today after alerting.
 function checkDate() {
   var dateText = $("#calendar").val();
-  var selectedDate = new Date(dateText);
+  var selectedDate = new Date(dateText+ ' ' + "00:00 AM");
+  console.log(selectedDate);
   var now = new Date();
   if (selectedDate < now) {
     alert("Date must be in the future");

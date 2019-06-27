@@ -130,7 +130,8 @@ $("#submit").on("click", function () {
 //alert user if past or today is selected. allow user to choose today after alerting.
 function checkDate() {
   var dateText = $("#calendar").val();
-  var selectedDate = new Date(dateText);
+  var selectedDate = new Date(dateText+ ' ' + "00:00 AM");
+  console.log(selectedDate);
   var now = new Date();
   if (selectedDate < now) {
     alert("Date must be in the future");
