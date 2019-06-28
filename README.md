@@ -36,7 +36,7 @@ email: demo@mail.com
 password:1234
 ### use demo account 2 to sign in, and provide trip input. 
 
-If you put arrival time within 15 mintues of demo account 1's input & destination is less than 1 kilometer away from the destination of demo account 1's input, you will find a match.
+If you put arrival time within 15 mintues of demo account 1's input & if demo 2's destination is less than 1 kilometer away from the destination of demo account 1's input, you will find a match.
 * demo account2
 email: mango@gmail.com
 password:1234
