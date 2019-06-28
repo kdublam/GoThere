@@ -41,4 +41,4 @@ If you put arrival time within 15 mintues of demo account 1's input & destinatio
 email: mango@gmail.com
 password:1234
 
-
+<img src = "images/gothere_demo.gif"
