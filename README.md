@@ -9,6 +9,16 @@ GoThere find you matching friends with a similar trip plan. The app is ideal for
 * Get on the HOV line and get there faster
 * Make your trip/commute more fun and meet new friends through GoThere
 
+## Technologies used
+* Node
+* Express
+* Passport
+* Handlebars
+* Javascript
+* Google Maps API
+* Styling: Materialize
+
+
 ## How it works
 
 ### create user account and log in
